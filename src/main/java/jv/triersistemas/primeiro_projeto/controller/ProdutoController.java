@@ -6,24 +6,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @RestController
 @RequestMapping("/produto")
 public class ProdutoController {
 
 	private static Produto produto = new Produto();
-
 	@GetMapping
-	public Produto getText() {
+	public Produto getProduto(@RequestParam Integer id) {
 		return produto;
 	}
-
 	@PostMapping
 	public void salvaProduto(@RequestBody Produto produtoRequest) {
 		produto = produtoRequest;
@@ -32,10 +30,8 @@ public class ProdutoController {
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-class Produto {
+@Data
+class Produto{
 	private String nome;
 	private BigDecimal preco;
-
 }
